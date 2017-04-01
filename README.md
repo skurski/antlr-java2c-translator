@@ -1,8 +1,11 @@
 # Running ANTLR4
 
-lib - libraries like antlr4
-bin - compiled .class files
-translator - application java files
+- lib - libraries like antlr4
+
+- bin - compiled .class files
+
+- translator - application java files
+
 
 1. Installing ANTLR4 in lib folder
 ```bash
@@ -16,17 +19,17 @@ translator - application java files
 	java -jar ../lib/antlr4.jar Java.g4
 ```
 
-4. Compiling from translator (project) folder
+3. Compiling from translator (project) folder
 ```bash
 	javac -cp ../lib/antlr4.jar *.java -d ../bin/
 ```
 	
-5. Run translator from bin folder
+4. Run translator from bin folder
 ```bash
 	java -cp ../lib/antlr4.jar:. ExtractInterfaceTool ../input/Demo.java
 ```
 
-3. Testing
+5. Testing
 
 ```bash
 	alias grun='java -cp .:antlr4.jar org.antlr.v4.runtime.misc.TestRig'​
