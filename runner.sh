@@ -1,9 +1,10 @@
 #!/bin/bash
 
-CLEAN="clean"
+GRAM="gram"
 BUILD="build"
 RUN="run"
-GRAM="gram"
+
+CLEAN="clean"
 RESET="reset"
 
 if [ "$1" == $CLEAN ]; then
@@ -13,7 +14,7 @@ elif [ "$1" == $BUILD ]; then
 	javac -cp ../lib/antlr4.jar *.java -d ../bin/
 elif [ "$1" == $RUN ]; then
 	cd bin/
-	java -cp ../lib/antlr4.jar:. ExtractInterfaceTool ../input/*.java
+	java -cp ../lib/antlr4.jar:. TranslateToCTool ../input/*.java
 elif [ "$1" == $GRAM ]; then
 	cd translator/
 	java -jar ../lib/antlr4.jar Java.g4
