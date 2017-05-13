@@ -1,37 +1,16 @@
-# Running ANTLR4
+Java to C translator
+====================
 
-- lib - libraries like antlr4
+Translator from subset of Java language to C language.
 
-- bin - compiled .class files
+1. Compile and run from command line:
+ ```
+ mvn compile exec:java
+ ```
+2. Run from IDE
+    - mvn clean install
+    - run Translator.main() method
+3. Generated sources are in src/main/generated-sources (all ANTLR4 files)
+4. Input file is in the resources/input directory.
+5. Output is printed to the console
 
-- translator - application java files
-
-
-1. Installing ANTLR4 in lib folder
-```bash
-	curl -O http://www.antlr.org/download/antlr-4.6-complete.jar
-	mv antlr-4.0-complete.jar antlr4.jar
-```
-
-2. Running ANTLR4 on grammar from translator (project) folder
-
-```bash
-	java -jar ../lib/antlr4.jar Java.g4
-```
-
-3. Compiling from translator (project) folder
-```bash
-	javac -cp ../lib/antlr4.jar *.java -d ../bin/
-```
-	
-4. Run translator from bin folder
-```bash
-	java -cp ../lib/antlr4.jar:. ExtractInterfaceTool ../input/Demo.java
-```
-
-5. Testing
-
-```bash
-	alias grun='java -cp .:antlr4.jar org.antlr.v4.runtime.misc.TestRig'​
-	grun Hello r -gui
-```
