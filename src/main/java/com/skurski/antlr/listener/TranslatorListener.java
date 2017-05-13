@@ -1,10 +1,12 @@
-package com.skurski.antlr;
+package com.skurski.antlr.listener;
 
 /***
  *
  * Go through the parse tree and translate Java syntax to C syntax.
  *
  ***/
+import com.skurski.antlr.JavaBaseListener;
+import com.skurski.antlr.JavaParser;
 import org.antlr.v4.runtime.TokenStream;
 
 public class TranslatorListener extends JavaBaseListener {
