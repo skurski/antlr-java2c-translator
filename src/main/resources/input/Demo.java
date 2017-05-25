@@ -1,18 +1,13 @@
-import java.util.List;
-import java.util.Map;
+package com.skurski.antlr.testing;
 
-/***
- *
- * Java source code used as input for translator.
- *
- ***/
 public class Demo {
 
-    public int add(int x, int y) {
-        return x+y;
+    public boolean add(double d) {
+        return true;
     }
 
-    public String print() {
-        return "This is example class";
+    public void remove(int d) {
+        int a = 0;
     }
+
 }
