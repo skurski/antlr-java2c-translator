@@ -10,4 +10,8 @@ public class Demo {
         int a = 0;
     }
 
+    private int multiply(int x, int y) {
+        int result = 25;
+        return result;
+    }
 }

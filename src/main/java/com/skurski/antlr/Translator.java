@@ -1,7 +1,7 @@
 package com.skurski.antlr;
 
-
 import com.skurski.antlr.model.Class;
+import com.skurski.antlr.model.Output;
 import com.skurski.antlr.visitor.ClassVisitor;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -23,6 +23,7 @@ public class Translator {
         classVisitor.visit(parser.compilation());
         Class traverseResult = classVisitor.getReturnClass();
 
-        System.out.println(traverseResult);
+        Output output = new Output(traverseResult);
+        output.print();
     }
 }

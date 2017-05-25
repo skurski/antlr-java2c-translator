@@ -10,12 +10,11 @@ public class Method {
     private String modifier;
     private String returnType;
     private String name;
-    private List<String> arguments;
+    private List<Variable> arguments;
     private Collection<Instruction> instructions;
 
-    public Method(String name, Collection<Instruction> instructions) {
+    public Method(String name) {
         this.name = name;
-        this.instructions = instructions;
     }
 
     public String getModifier() {
@@ -42,20 +41,20 @@ public class Method {
         this.name = name;
     }
 
-    public List<String> getArguments() {
-        return arguments;
-    }
-
-    public void setArguments(List<String> arguments) {
-        this.arguments = arguments;
-    }
-
     public Collection<Instruction> getInstructions() {
         return instructions;
     }
 
     public void setInstructions(Collection<Instruction> instructions) {
         this.instructions = instructions;
+    }
+
+    public List<Variable> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(List<Variable> arguments) {
+        this.arguments = arguments;
     }
 
     @Override

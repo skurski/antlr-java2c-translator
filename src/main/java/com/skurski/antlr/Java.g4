@@ -34,8 +34,7 @@ classBody
     ;
 
 methodDeclaration
-    :   modifier* type methodName methodParameters ('[' ']')* methodBody
-    |   modifier* 'void' methodName methodParameters methodBody
+    :   modifier? type methodName methodParameters ('[' ']')* methodBody
     ;
 
 methodParameters
@@ -77,12 +76,13 @@ arrayInitializer
     :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
     ;
 
-type:   primitiveType ('[' ']')*
+type
+    :   primitiveType ('[' ']')*
+    |   'void'
     ;
 
 statement
     :   'return' expression? ';'
-    |   'throw' expression ';'
     |   ';'
     ;
 
@@ -108,6 +108,7 @@ expression
 
 literal
     :   INT
+    |   variableName
     |   booleanLiteral
     |   'null'
     ;
