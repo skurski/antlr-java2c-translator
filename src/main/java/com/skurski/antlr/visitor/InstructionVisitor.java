@@ -19,7 +19,7 @@ public class InstructionVisitor extends JavaBaseVisitor<Instruction> {
     public Instruction visitInstruction(@NotNull JavaParser.InstructionContext ctx) {
         Instruction instruction = new Instruction();
 
-        JavaParser.LocalVariableDeclarationContext variableContext = ctx.localVariableDeclaration();
+        JavaParser.VariableDeclaratorContext variableContext = ctx.variableDeclarator();
         JavaParser.StatementContext statementContext = ctx.statement();
 
         List<Variable> variables = new ArrayList<>();

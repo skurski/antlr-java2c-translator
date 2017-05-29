@@ -3,6 +3,7 @@ package com.skurski.antlr.visitor;
 import com.skurski.antlr.JavaBaseVisitor;
 import com.skurski.antlr.JavaParser;
 import com.skurski.antlr.model.Class;
+import com.skurski.antlr.model.Field;
 import com.skurski.antlr.model.Method;
 import org.antlr.v4.runtime.misc.NotNull;
 
@@ -19,13 +20,20 @@ public class ClassVisitor extends JavaBaseVisitor<Class> {
     @Override
     public Class visitClassDeclaration(@NotNull JavaParser.ClassDeclarationContext ctx) {
         String className = ctx.className().getText();
+        FieldVisitor fieldVisitor = new FieldVisitor();
         MethodVisitor methodVisitor = new MethodVisitor();
-        List<Method> methods = ctx.classBody().methodDeclaration()
+
+        List<Field> fields = ctx.classBodyDeclaration().fieldDeclaration()
+                .stream()
+                .map(field -> field.accept(fieldVisitor))
+                .collect(Collectors.toList());
+
+        List<Method> methods = ctx.classBodyDeclaration().methodDeclaration()
                 .stream()
                 .map(method -> method.accept(methodVisitor))
                 .collect(Collectors.toList());
 
-        returnClass = new Class(className, methods);
+        returnClass = new Class(className, methods, fields);
         return returnClass;
     }
 

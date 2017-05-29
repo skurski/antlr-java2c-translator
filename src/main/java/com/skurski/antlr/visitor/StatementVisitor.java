@@ -12,8 +12,7 @@ public class StatementVisitor extends JavaBaseVisitor<Statement> {
 
     @Override
     public Statement visitStatement(@NotNull JavaParser.StatementContext ctx) {
-        // todo: read and convert statement
-        return new Statement(ctx.getText());
+        return new Statement(ctx.expression().getText());
     }
 
 }

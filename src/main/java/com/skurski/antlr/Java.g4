@@ -26,15 +26,20 @@ classModifier
 
 classDeclaration
     : 'class' className
-       classBody
+       '{' classBodyDeclaration '}'
     ;
 
-classBody
-    :   '{' (methodDeclaration)* '}'
+classBodyDeclaration
+    :   methodDeclaration*
+    |   fieldDeclaration*
     ;
 
 methodDeclaration
     :   modifier? type methodName methodParameters ('[' ']')* methodBody
+    ;
+
+fieldDeclaration
+    :   modifier? variableDeclarator ';'
     ;
 
 methodParameters
@@ -43,7 +48,6 @@ methodParameters
 
 methodParametersDeclaration
     :   type variableName (',' methodParametersDeclaration)?
-    |   '...' variableName
     ;
 
 modifier
@@ -55,25 +59,16 @@ modifier
 methodBody : '{' instruction+ '}' ;
 
 instruction
-    :   localVariableDeclaration ';'
+    :   variableDeclarator ';'
     |   statement
     ;
 
-localVariableDeclaration
-    :   type variableDeclarator
-    ;
-
 variableDeclarator
-    :   variableName ('=' variableInitializer)?
+    :   type variableName ('=' variableInitializer)?
     ;
 
 variableInitializer
-    :   arrayInitializer
-    |   expression
-    ;
-
-arrayInitializer
-    :   '{' (variableInitializer (',' variableInitializer)* (',')? )? '}'
+    :   expression
     ;
 
 type
@@ -109,19 +104,11 @@ expression
 literal
     :   INT
     |   variableName
-    |   booleanLiteral
     |   'null'
     ;
 
-booleanLiteral
-   :   'true'
-   |   'false'
-   ;
-
 primitiveType
-    :   'boolean'
-    |   'char'
-    |   'byte'
+    :   'char'
     |   'short'
     |   'int'
     |   'long'

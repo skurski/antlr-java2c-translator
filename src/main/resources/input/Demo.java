@@ -2,8 +2,10 @@ package com.skurski.antlr.testing;
 
 public class Demo {
 
-    public boolean add(double d) {
-        return true;
+    private float number = 44.66;
+
+    public double square(double d) {
+        return d * d;
     }
 
     public void remove(int d) {

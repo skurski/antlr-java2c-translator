@@ -10,6 +10,8 @@ public class Output {
 
     private List<String> functions = new ArrayList<>();
 
+    private List<String> globalVariables = new ArrayList<>();
+
     private Class input;
 
     public Output(Class input) {
@@ -27,7 +29,10 @@ public class Output {
         sb.append("#include <stdio.h>");
         sb.append("\n\n");
 
-        // todo: add global variables (java class fields)
+        for (String row : globalVariables) {
+            sb.append(row);
+            sb.append("\n");
+        }
 
         for (String row : functions) {
             sb.append(row);
@@ -38,7 +43,23 @@ public class Output {
     }
 
     private void convert() {
+        convertFieldsToGlobalVariables();
         convertMethodsToFunctions();
+    }
+
+    private void convertFieldsToGlobalVariables() {
+        for (Field field : input.getFields()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(field.getReturnType() + " ");
+            sb.append(field.getName() + "(");
+            if (field.getValue() != null) {
+                sb.append(" = ");
+                sb.append(field.getValue());
+            }
+            sb.append(";\n");
+
+            globalVariables.add(sb.toString());
+        }
     }
 
     private void convertMethodsToFunctions() {
@@ -74,7 +95,7 @@ public class Output {
 
                     if (!instruction.getStatements().isEmpty()) {
                         for (Statement stat : instruction.getStatements()) {
-                            sb.append(stat.getRow());
+                            sb.append(stat.getValue());
                             sb.append("\n");
                         }
                     }

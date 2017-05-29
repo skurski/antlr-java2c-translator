@@ -5,24 +5,28 @@ package com.skurski.antlr.model;
  */
 public class Statement {
 
-    private String row;
+    private String record;
 
-    public Statement(String row) {
-        this.row = row;
+    public Statement(String record) {
+        this.record = record;
     }
 
-    public String getRow() {
-        return row;
+    public String getRecord() {
+        return record;
     }
 
-    public void setRow(String row) {
-        this.row = row;
+    public void setRecord(String record) {
+        this.record = record;
+    }
+
+    public String getValue() {
+        return "return " + record + ";";
     }
 
     @Override
     public String toString() {
         return "Statement{" +
-                "row='" + row + '\'' +
+                "record='" + record + '\'' +
                 '}';
     }
 }

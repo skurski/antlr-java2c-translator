@@ -11,20 +11,12 @@ public class Class {
 
     private Collection<Method> methods;
 
-    // todo: add fields
-//    private Collection<Field> fields;
+    private Collection<Field> fields;
 
-    public Class(String name, Collection<Method> methods) {
+    public Class(String name, Collection<Method> methods, Collection<Field> fields) {
         this.name = name;
         this.methods = methods;
-    }
-
-    public Collection<Method> getMethods() {
-        return methods;
-    }
-
-    public void setMethods(Collection<Method> methods) {
-        this.methods = methods;
+        this.fields = fields;
     }
 
     public String getName() {
@@ -35,11 +27,28 @@ public class Class {
         this.name = name;
     }
 
+    public Collection<Method> getMethods() {
+        return methods;
+    }
+
+    public void setMethods(Collection<Method> methods) {
+        this.methods = methods;
+    }
+
+    public Collection<Field> getFields() {
+        return fields;
+    }
+
+    public void setFields(Collection<Field> fields) {
+        this.fields = fields;
+    }
+
     @Override
     public String toString() {
         return "Class{" +
                 "name='" + name + '\'' +
                 ", methods=" + methods +
+                ", fields=" + fields +
                 '}';
     }
 }
