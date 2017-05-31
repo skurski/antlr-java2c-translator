@@ -3,17 +3,15 @@ package com.skurski.antlr.model;
 /**
  * Created by psk on 25.05.17.
  */
-public class Variable implements Printer {
+public class Parameter implements Printer {
 
     private String type;
 
     private String name;
 
-    private String value;
+    public Parameter() {}
 
-    public Variable() {}
-
-    public Variable(String type, String name) {
+    public Parameter(String type, String name) {
         this.type = type;
         this.name = name;
     }
@@ -34,25 +32,16 @@ public class Variable implements Printer {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     @Override
     public String print() {
-        return type + " " + name + " " + (value != null ? " = " + value : "") + ";";
+        return type + " " + name;
     }
 
     @Override
     public String toString() {
-        return "Variable{" +
+        return "Parameter{" +
                 "type='" + type + '\'' +
                 ", name='" + name + '\'' +
-                ", value='" + value + '\'' +
                 '}';
     }
 }

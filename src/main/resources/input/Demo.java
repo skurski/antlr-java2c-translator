@@ -16,9 +16,6 @@ public class Demo {
 
     private int multiply(int x, int y) {
         int result = 25;
-        if (result == x) {
-            return y;
-        }
 
         return result;
     }

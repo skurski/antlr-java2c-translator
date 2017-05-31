@@ -4,13 +4,13 @@ package com.skurski.antlr.model;
 /**
  * Created by psk on 29.05.17.
  */
-public class Field {
+public class Field implements Printer {
     private String modifier;
     private String returnType;
     private String name;
     private String value;
 
-    private boolean isConstant;
+    private boolean constant = false;
 
     public Field() {}
 
@@ -47,11 +47,39 @@ public class Field {
     }
 
     public boolean isConstant() {
-        return isConstant;
+        return constant;
     }
 
     public void setConstant(boolean constant) {
-        isConstant = constant;
+        this.constant = constant;
+    }
+
+    @Override
+    public String print() {
+        if (constant) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("#define ");
+            sb.append(name.toUpperCase());
+            if (value.matches("-?\\d+(\\.\\d+)?")) {
+                sb.append(" " + value);
+            } else {
+                sb.append(" \"" + value + "\"");
+            }
+            sb.append("\n");
+
+            return sb.toString();
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(returnType + " ");
+        sb.append(name);
+        if (value != null) {
+            sb.append(" = ");
+            sb.append(value);
+        }
+        sb.append(";\n");
+
+        return sb.toString();
     }
 
     @Override
@@ -61,7 +89,7 @@ public class Field {
                 ", returnType='" + returnType + '\'' +
                 ", name='" + name + '\'' +
                 ", value='" + value + '\'' +
-                ", isConstant=" + isConstant +
+                ", constant=" + constant +
                 '}';
     }
 }

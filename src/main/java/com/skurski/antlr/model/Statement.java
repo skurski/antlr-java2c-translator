@@ -1,34 +1,47 @@
 package com.skurski.antlr.model;
 
-/**
- * Composite pattern.
- *
- * Statement can be a single expression or can have multiple statements inside.
- */
-public class Statement {
 
-    private String record;
+public class Statement implements Printer {
 
-    public Statement(String record) {
-        this.record = record;
+    private String prefix;
+
+    private Expression expression;
+
+    public Statement(Expression expression) {
+        this.expression = expression;
     }
 
-    public String getRecord() {
-        return record;
+    public Statement(String prefix, Expression expression) {
+        this.prefix = prefix;
+        this.expression = expression;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public String getValue() {
-        return "return " + record + ";";
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public Expression getExpression() {
+        return expression;
+    }
+
+    public void setExpression(Expression expression) {
+        this.expression = expression;
+    }
+
+    @Override
+    public String print() {
+        return prefix + " " + expression.print();
     }
 
     @Override
     public String toString() {
         return "Statement{" +
-                "record='" + record + '\'' +
+                "prefix='" + prefix + '\'' +
+                ", expression=" + expression +
                 '}';
     }
 }

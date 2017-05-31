@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by psk on 22.05.17.
  */
-public class Instruction {
+public class Instruction implements Printer {
 
     private List<Variable> variables;
 
@@ -25,6 +25,24 @@ public class Instruction {
 
     public void setStatements(List<Statement> statements) {
         this.statements = statements;
+    }
+
+    @Override
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\t");
+
+        for (Variable var : variables) {
+            sb.append(var.print());
+            sb.append("\n");
+        }
+
+        for (Statement stat : statements) {
+            sb.append(stat.print());
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 
     @Override

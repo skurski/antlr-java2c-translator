@@ -2,7 +2,7 @@ package com.skurski.antlr.visitor;
 
 import com.skurski.antlr.JavaBaseVisitor;
 import com.skurski.antlr.JavaParser;
-import com.skurski.antlr.model.Variable;
+import com.skurski.antlr.model.Parameter;
 import com.skurski.antlr.model.Instruction;
 import com.skurski.antlr.model.Method;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -19,21 +19,19 @@ public class MethodVisitor extends JavaBaseVisitor<Method> {
     @Override
     public Method visitMethodDeclaration(@NotNull JavaParser.MethodDeclarationContext ctx) {
         Method method = new Method(ctx.methodName().getText());
-//        method.setModifier(ctx.modifier().getText());
+        method.setModifier(ctx.modifier().getText());
         method.setReturnType(ctx.type().getText());
 
-        // retrieve all method arguments
-        List<Variable> arguments = new ArrayList<>();
+        List<Parameter> arguments = new ArrayList<>();
         JavaParser.MethodParametersDeclarationContext paramContext = ctx.methodParameters().methodParametersDeclaration();
         while (paramContext != null) {
-            arguments.add(new Variable(
+            arguments.add(new Parameter(
                     paramContext.type().getText(), paramContext.variableName().getText()
             ));
             paramContext = paramContext.methodParametersDeclaration();
         }
         method.setArguments(arguments);
 
-        // retrieve method instructions (statements inside method body)
         InstructionVisitor instructionVisitor = new InstructionVisitor();
         List<Instruction> instructions = ctx.methodBody().instruction()
                 .stream()

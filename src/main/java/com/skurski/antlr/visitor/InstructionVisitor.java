@@ -32,8 +32,6 @@ public class InstructionVisitor extends JavaBaseVisitor<Instruction> {
             statements.add(statementContext.accept(new StatementVisitor()));
         }
 
-        // todo: allow multiple variables and statements to exist (changes in grammar)
-
         instruction.setVariables(variables);
         instruction.setStatements(statements);
         return instruction;

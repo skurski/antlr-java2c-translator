@@ -50,88 +50,15 @@ public class Output {
     }
 
     private void convert() {
-        convertFieldsToGlobalVariables();
-        convertMethodsToFunctions();
-    }
-
-    private void convertFieldsToGlobalVariables() {
         for (Field field : input.getFields()) {
-            if (!field.isConstant()) {
-                convertToConstants(field);
-                continue;
+            if (field.isConstant()) {
+                constants.add(new StringBuilder(field.print()).toString());
+            } else {
+                globalVariables.add(new StringBuilder(field.print()).toString());
             }
-
-            StringBuilder sb = new StringBuilder();
-            sb.append(field.getReturnType() + " ");
-            sb.append(field.getName());
-            if (field.getValue() != null) {
-                sb.append(" = ");
-                sb.append(field.getValue());
-            }
-            sb.append(";\n");
-
-            globalVariables.add(sb.toString());
         }
-    }
-
-    private void convertToConstants(Field field) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("#define ");
-        sb.append(field.getName().toUpperCase());
-        if (field.getValue().matches("-?\\d+(\\.\\d+)?")) {
-            sb.append(" " + field.getValue());
-        } else {
-            sb.append(" \"" + field.getValue() + "\"");
-        }
-        sb.append("\n");
-
-        constants.add(sb.toString());
-    }
-
-    private void convertMethodsToFunctions() {
         for (Method method : input.getMethods()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(method.getReturnType() + " ");
-            sb.append(method.getName() + "(");
-
-            if (!method.getArguments().isEmpty()) {
-                String comma = "";
-                for (Variable param : method.getArguments()) {
-                    sb.append(comma);
-                    sb.append(param.getType() + " ");
-                    sb.append(param.getName());
-                    comma = ", ";
-                }
-                sb.append(") ");
-                sb.append("{\n");
-            }
-
-            if (!method.getInstructions().isEmpty()) {
-                for (Instruction instruction : method.getInstructions()) {
-                    sb.append("\t");
-
-                    if (!instruction.getVariables().isEmpty()) {
-                        for (Variable var : instruction.getVariables()) {
-                            sb.append(var.getType() + " ");
-                            sb.append(var.getName() + " = ");
-                            sb.append(var.getValue() + ";");
-                            sb.append("\n");
-                        }
-                    }
-
-                    if (!instruction.getStatements().isEmpty()) {
-                        for (Statement stat : instruction.getStatements()) {
-                            sb.append(stat.getValue());
-                            sb.append("\n");
-                        }
-                    }
-                }
-            }
-
-            sb.append("}");
-            sb.append("\n");
-
-            functions.add(sb.toString());
+            functions.add(new StringBuilder(method.print()).toString());
         }
     }
 }

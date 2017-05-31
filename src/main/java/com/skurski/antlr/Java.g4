@@ -86,34 +86,21 @@ type
     ;
 
 statement
-    :   'return' expression? ';'
-    |   ifStatement
-    |   ';'
-    ;
-
-ifStatement
-    :   'if' parExpression '{' statement '}'
+    :   'return' expression? ';'                        #returnStatement
     ;
 
 expression
-    :   literal
-    |   expression ('++' | '--')
-    |   ('+'|'-'|'++'|'--') expression
-    |   ('~'|'!') expression
-    |   '(' type ')' expression
-    |   expression ('*'|'/'|'%') expression
-    |   expression ('+'|'-') expression
-    |   expression ('<' '<' | '>' '>' '>' | '>' '>') expression
-    |   expression ('<' '=' | '>' '=' | '>' | '<') expression
-    |   expression 'instanceof' type
-    |   expression ('==' | '!=') expression
-    |   expression '&' expression
-    |   expression '^' expression
-    |   expression '|' expression
-    |   expression '&&' expression
-    |   expression '||' expression
-    |   expression '?' expression ':' expression
+    :   literal                                         #literalExpression
+    |   expression op=('+'|'-'|'*'|'/') expression      #calcExpression
+    |   expression op=('=='|'!=') expression            #equalityExpression
     ;
+
+ADD : '+' ;
+SUB : '-' ;
+MUL : '*' ;
+DIV : '/' ;
+EQ  : '==';
+NE  : '!=';
 
 parExpression
     :   '(' expression ')'
@@ -138,6 +125,9 @@ className : ID ;
 methodName : ID ;
 qualifiedName : ID ;
 variableName : ID ('[' ']')* ;
+
+// LEXER
+
 
 INT : [0-9]+ ;
 ID : [a-zA-Z0-9\.]+ ;

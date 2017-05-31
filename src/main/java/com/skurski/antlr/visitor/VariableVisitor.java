@@ -15,8 +15,7 @@ public class VariableVisitor extends JavaBaseVisitor<Variable> {
         Variable variable = new Variable();
         variable.setType(ctx.type().getText());
         variable.setName(ctx.variableName().getText());
-        variable.setValue(ctx.variableInitializer().expression().literal().getText());
-
+        variable.setValue(ctx.variableInitializer().expression().getText());
         return variable;
     }
 
