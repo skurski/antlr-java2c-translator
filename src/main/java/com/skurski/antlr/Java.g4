@@ -46,6 +46,12 @@ fieldDeclaration
     :   modifier? constant? variableDeclarator ';'
     ;
 
+modifier
+    : 'public'
+    | 'private'
+    | 'protected'
+    ;
+
 constant
     : 'static final'
     | 'final static'
@@ -59,25 +65,21 @@ methodParametersDeclaration
     :   type variableName (',' methodParametersDeclaration)?
     ;
 
-modifier
-    : 'public'
-    | 'private'
-    | 'protected'
-    ;
+methodBody
+    : '{' instruction+ '}' ;
 
-methodBody : '{' instruction+ '}' ;
+variableDeclarator
+    :   type variableName ('=' variableInitializer)?
+    ;
 
 instruction
     :   variableDeclarator ';'
     |   statement
     ;
 
-variableDeclarator
-    :   type variableName ('=' variableInitializer)?
-    ;
-
 variableInitializer
     :   expression
+    |   '\'' expression '\''
     ;
 
 type
@@ -86,7 +88,8 @@ type
     ;
 
 statement
-    :   'return' expression? ';'                        #returnStatement
+    :   'return' expression? ';'                                            #returnStatement
+    |   'if' parExpression '{' statement '}' ('else {' statement '}')?      #condStatement
     ;
 
 expression
@@ -94,13 +97,6 @@ expression
     |   expression op=('+'|'-'|'*'|'/') expression      #calcExpression
     |   expression op=('=='|'!=') expression            #equalityExpression
     ;
-
-ADD : '+' ;
-SUB : '-' ;
-MUL : '*' ;
-DIV : '/' ;
-EQ  : '==';
-NE  : '!=';
 
 parExpression
     :   '(' expression ')'
@@ -125,9 +121,6 @@ className : ID ;
 methodName : ID ;
 qualifiedName : ID ;
 variableName : ID ('[' ']')* ;
-
-// LEXER
-
 
 INT : [0-9]+ ;
 ID : [a-zA-Z0-9\.]+ ;

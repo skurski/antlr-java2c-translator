@@ -40,18 +40,18 @@ public interface JavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitClassModifier(@NotNull JavaParser.ClassModifierContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link JavaParser#methodParameters}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link JavaParser#modifier}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitModifier(@NotNull JavaParser.ModifierContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link JavaParser#methodParameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link JavaParser#typeDeclaration}.
@@ -224,4 +224,12 @@ public interface JavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLiteralExpression(@NotNull JavaParser.LiteralExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by the {@code condStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondStatement(@NotNull JavaParser.CondStatementContext ctx);
 }

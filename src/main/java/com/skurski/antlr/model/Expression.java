@@ -53,9 +53,9 @@ public class Expression implements Printer {
 
     public String print() {
         if (leftValue != null && rightValue != null) {
-            return leftValue.value + " " + operation + " " + rightValue.value + ";";
+            return leftValue.value + " " + operation + " " + rightValue.value;
         }
-        return value + ";";
+        return value;
     }
 
     @Override

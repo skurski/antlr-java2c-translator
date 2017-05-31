@@ -1,47 +1,52 @@
 package com.skurski.antlr.model;
 
 
+import java.util.*;
+
 public class Statement implements Printer {
 
-    private String prefix;
+    private String type;
 
     private Expression expression;
+
+    private List<Statement> statements = Collections.emptyList();
 
     public Statement(Expression expression) {
         this.expression = expression;
     }
 
-    public Statement(String prefix, Expression expression) {
-        this.prefix = prefix;
+    public Statement(String type, Expression expression) {
+        this.type = type;
         this.expression = expression;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public Expression getExpression() {
-        return expression;
-    }
-
-    public void setExpression(Expression expression) {
+    public Statement(String type, Expression expression, List<Statement> statements) {
+        this.type = type;
         this.expression = expression;
+        this.statements = statements;
     }
 
     @Override
     public String print() {
-        return prefix + " " + expression.print();
-    }
+        StringBuilder sb = new StringBuilder();
 
-    @Override
-    public String toString() {
-        return "Statement{" +
-                "prefix='" + prefix + '\'' +
-                ", expression=" + expression +
-                '}';
+        if (type.equals("return")) {
+            sb.append("return " + expression.print() + ";");
+        }
+
+        if (type.equals("if")) {
+            sb.append("if (" + expression.print() + ")");
+        }
+
+        for (int i=0; i<statements.size(); i++) {
+            if (i == 0) {
+                sb.append(" {\n\t\t" + statements.get(0).print() + "\n\t}");
+            }
+            if (i == 1) {
+                sb.append(" else {\n\t\t" + statements.get(1).print() + "\n\t}");
+            }
+        }
+
+        return sb.toString();
     }
 }

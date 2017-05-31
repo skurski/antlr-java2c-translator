@@ -53,17 +53,6 @@ public interface JavaListener extends ParseTreeListener {
 	void exitClassModifier(@NotNull JavaParser.ClassModifierContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link JavaParser#methodParameters}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link JavaParser#methodParameters}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link JavaParser#modifier}.
 	 * @param ctx the parse tree
 	 */
@@ -73,6 +62,17 @@ public interface JavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModifier(@NotNull JavaParser.ModifierContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link JavaParser#methodParameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link JavaParser#methodParameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#typeDeclaration}.
@@ -345,4 +345,17 @@ public interface JavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLiteralExpression(@NotNull JavaParser.LiteralExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by the {@code condStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondStatement(@NotNull JavaParser.CondStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code condStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondStatement(@NotNull JavaParser.CondStatementContext ctx);
 }

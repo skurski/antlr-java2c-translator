@@ -70,9 +70,8 @@ public class Method implements Printer {
                 sb.append(param.print());
                 comma = ", ";
             }
-            sb.append(") ");
-            sb.append("{\n");
         }
+        sb.append(") {\n");
 
         if (!instructions.isEmpty()) {
             for (Instruction instruction : instructions) {

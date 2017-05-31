@@ -4,19 +4,41 @@ public class Demo {
 
     private float number = 44.66;
 
+    private long bigNumber = 5432535932452;
+
     public final static int MAX = 999;
 
-    public double square(double d) {
-        return d * d;
+    public final static char FLAG = 'A';
+
+    public double squareValue(double value) {
+        return value * value;
     }
 
-    public void remove(int d) {
-        int a = 0;
+    public int addTo(int value) {
+        int add = 1000;
+        return value + add;
     }
 
     private int multiply(int x, int y) {
-        int result = 25;
+        int temp = x;
+        int z = 1000;
 
-        return result;
+        if (x == y) {
+            return z;
+        }
+
+        return temp;
+    }
+
+    void doNothing() {
+        float sign = 45.99;
+    }
+
+    float calculate(int value) {
+        if (value != 100) {
+            return 50.55;
+        } else {
+            return 0.0;
+        }
     }
 }

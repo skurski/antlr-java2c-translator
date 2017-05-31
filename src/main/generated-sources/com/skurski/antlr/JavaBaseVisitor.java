@@ -50,7 +50,7 @@ public class JavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements J
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { return visitChildren(ctx); }
+	@Override public T visitModifier(@NotNull JavaParser.ModifierContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -58,7 +58,7 @@ public class JavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements J
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitModifier(@NotNull JavaParser.ModifierContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -251,4 +251,12 @@ public class JavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements J
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitLiteralExpression(@NotNull JavaParser.LiteralExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCondStatement(@NotNull JavaParser.CondStatementContext ctx) { return visitChildren(ctx); }
 }

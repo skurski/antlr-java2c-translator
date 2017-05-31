@@ -69,19 +69,6 @@ public class JavaBaseListener implements JavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterModifier(@NotNull JavaParser.ModifierContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -89,6 +76,19 @@ public class JavaBaseListener implements JavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitModifier(@NotNull JavaParser.ModifierContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMethodParameters(@NotNull JavaParser.MethodParametersContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -401,6 +401,19 @@ public class JavaBaseListener implements JavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLiteralExpression(@NotNull JavaParser.LiteralExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCondStatement(@NotNull JavaParser.CondStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCondStatement(@NotNull JavaParser.CondStatementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

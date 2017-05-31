@@ -33,17 +33,18 @@ public class Output {
 
         for (String row : constants) {
             sb.append(row);
-            sb.append("\n");
         }
+
+        sb.append("\n");
 
         for (String row : globalVariables) {
             sb.append(row);
-            sb.append("\n");
         }
+
+        sb.append("\n");
 
         for (String row : functions) {
             sb.append(row);
-            sb.append("\n");
         }
 
         return sb.toString();
