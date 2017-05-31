@@ -19,7 +19,7 @@ public class MethodVisitor extends JavaBaseVisitor<Method> {
     @Override
     public Method visitMethodDeclaration(@NotNull JavaParser.MethodDeclarationContext ctx) {
         Method method = new Method(ctx.methodName().getText());
-        method.setModifier(ctx.modifier().getText());
+//        method.setModifier(ctx.modifier().getText());
         method.setReturnType(ctx.type().getText());
 
         // retrieve all method arguments

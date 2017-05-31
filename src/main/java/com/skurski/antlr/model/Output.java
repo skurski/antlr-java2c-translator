@@ -12,6 +12,8 @@ public class Output {
 
     private List<String> globalVariables = new ArrayList<>();
 
+    private List<String> constants = new ArrayList<>();
+
     private Class input;
 
     public Output(Class input) {
@@ -28,6 +30,11 @@ public class Output {
         StringBuilder sb = new StringBuilder();
         sb.append("#include <stdio.h>");
         sb.append("\n\n");
+
+        for (String row : constants) {
+            sb.append(row);
+            sb.append("\n");
+        }
 
         for (String row : globalVariables) {
             sb.append(row);
@@ -49,9 +56,14 @@ public class Output {
 
     private void convertFieldsToGlobalVariables() {
         for (Field field : input.getFields()) {
+            if (!field.isConstant()) {
+                convertToConstants(field);
+                continue;
+            }
+
             StringBuilder sb = new StringBuilder();
             sb.append(field.getReturnType() + " ");
-            sb.append(field.getName() + "(");
+            sb.append(field.getName());
             if (field.getValue() != null) {
                 sb.append(" = ");
                 sb.append(field.getValue());
@@ -60,6 +72,20 @@ public class Output {
 
             globalVariables.add(sb.toString());
         }
+    }
+
+    private void convertToConstants(Field field) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("#define ");
+        sb.append(field.getName().toUpperCase());
+        if (field.getValue().matches("-?\\d+(\\.\\d+)?")) {
+            sb.append(" " + field.getValue());
+        } else {
+            sb.append(" \"" + field.getValue() + "\"");
+        }
+        sb.append("\n");
+
+        constants.add(sb.toString());
     }
 
     private void convertMethodsToFunctions() {

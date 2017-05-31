@@ -13,10 +13,11 @@ public class FieldVisitor extends JavaBaseVisitor<Field> {
     @Override
     public Field visitFieldDeclaration(@NotNull JavaParser.FieldDeclarationContext ctx) {
         Field field = new Field();
-//        field.setModifier(ctx.modifier().getText());
+        field.setModifier(ctx.modifier().getText());
         field.setReturnType(ctx.variableDeclarator().type().getText());
         field.setName(ctx.variableDeclarator().variableName().getText());
-//        field.setValue(ctx.variableDeclarator().variableInitializer().expression().literal().getText());
+        field.setValue(ctx.variableDeclarator().variableInitializer().expression().literal().getText());
+        field.setConstant(ctx.constant() != null);
         return field;
     }
 

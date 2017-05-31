@@ -23,13 +23,15 @@ public class ClassVisitor extends JavaBaseVisitor<Class> {
         FieldVisitor fieldVisitor = new FieldVisitor();
         MethodVisitor methodVisitor = new MethodVisitor();
 
-        List<Field> fields = ctx.classBodyDeclaration().fieldDeclaration()
+        List<Field> fields = ctx.classBodyDeclaration().member()
                 .stream()
+                .filter(object -> object.fieldDeclaration() != null)
                 .map(field -> field.accept(fieldVisitor))
                 .collect(Collectors.toList());
 
-        List<Method> methods = ctx.classBodyDeclaration().methodDeclaration()
+        List<Method> methods = ctx.classBodyDeclaration().member()
                 .stream()
+                .filter(object -> object.methodDeclaration() != null)
                 .map(method -> method.accept(methodVisitor))
                 .collect(Collectors.toList());
 

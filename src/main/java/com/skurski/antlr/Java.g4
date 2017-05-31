@@ -30,8 +30,12 @@ classDeclaration
     ;
 
 classBodyDeclaration
-    :   methodDeclaration*
-    |   fieldDeclaration*
+    :   member*
+    ;
+
+member
+    : methodDeclaration
+    | fieldDeclaration
     ;
 
 methodDeclaration
@@ -39,7 +43,12 @@ methodDeclaration
     ;
 
 fieldDeclaration
-    :   modifier? variableDeclarator ';'
+    :   modifier? constant? variableDeclarator ';'
+    ;
+
+constant
+    : 'static final'
+    | 'final static'
     ;
 
 methodParameters
@@ -78,7 +87,12 @@ type
 
 statement
     :   'return' expression? ';'
+    |   ifStatement
     |   ';'
+    ;
+
+ifStatement
+    :   'if' parExpression '{' statement '}'
     ;
 
 expression
@@ -99,6 +113,10 @@ expression
     |   expression '&&' expression
     |   expression '||' expression
     |   expression '?' expression ':' expression
+    ;
+
+parExpression
+    :   '(' expression ')'
     ;
 
 literal

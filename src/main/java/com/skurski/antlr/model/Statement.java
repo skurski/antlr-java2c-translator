@@ -1,7 +1,9 @@
 package com.skurski.antlr.model;
 
 /**
- * Created by psk on 25.05.17.
+ * Composite pattern.
+ *
+ * Statement can be a single expression or can have multiple statements inside.
  */
 public class Statement {
 
