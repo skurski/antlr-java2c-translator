@@ -44,7 +44,7 @@ public class Variable implements Printer {
 
     @Override
     public String print() {
-        return type + " " + name + " " + (value != null ? " = " + value : "") + ";";
+        return type + " " + name + " " + (value != null ? "= " + value : "") + ";";
     }
 
     @Override

@@ -175,11 +175,35 @@ public interface JavaVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFieldDeclaration(@NotNull JavaParser.FieldDeclarationContext ctx);
 
 	/**
+	 * Visit a parse tree produced by the {@code statementExpression}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link JavaParser#methodName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMethodName(@NotNull JavaParser.MethodNameContext ctx);
+
+	/**
+	 * Visit a parse tree produced by the {@code notEqualExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by the {@code whileStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatement(@NotNull JavaParser.WhileStatementContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link JavaParser#methodParametersDeclaration}.
@@ -232,4 +256,12 @@ public interface JavaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitCondStatement(@NotNull JavaParser.CondStatementContext ctx);
+
+	/**
+	 * Visit a parse tree produced by the {@code incDecExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx);
 }

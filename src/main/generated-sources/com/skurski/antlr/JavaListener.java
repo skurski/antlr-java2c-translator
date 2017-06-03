@@ -266,6 +266,19 @@ public interface JavaListener extends ParseTreeListener {
 	void exitFieldDeclaration(@NotNull JavaParser.FieldDeclarationContext ctx);
 
 	/**
+	 * Enter a parse tree produced by the {@code statementExpression}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code statementExpression}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link JavaParser#methodName}.
 	 * @param ctx the parse tree
 	 */
@@ -275,6 +288,32 @@ public interface JavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMethodName(@NotNull JavaParser.MethodNameContext ctx);
+
+	/**
+	 * Enter a parse tree produced by the {@code notEqualExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code notEqualExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by the {@code whileStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatement(@NotNull JavaParser.WhileStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code whileStatement}
+	 * labeled alternative in {@link JavaParser#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatement(@NotNull JavaParser.WhileStatementContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link JavaParser#methodParametersDeclaration}.
@@ -358,4 +397,17 @@ public interface JavaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCondStatement(@NotNull JavaParser.CondStatementContext ctx);
+
+	/**
+	 * Enter a parse tree produced by the {@code incDecExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code incDecExpression}
+	 * labeled alternative in {@link JavaParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx);
 }

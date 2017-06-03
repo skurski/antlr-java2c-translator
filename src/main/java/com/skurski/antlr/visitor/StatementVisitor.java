@@ -6,6 +6,7 @@ import com.skurski.antlr.model.Expression;
 import com.skurski.antlr.model.Statement;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,4 +35,20 @@ public class StatementVisitor extends JavaBaseVisitor<Statement> {
         return new Statement("if", parExpression, statements);
     }
 
+    @Override
+    public Statement visitWhileStatement(@NotNull JavaParser.WhileStatementContext ctx) {
+        Expression parExpression = ctx.parExpression().expression().accept(expressionVisitor);
+
+        Statement statement = ctx.statement().accept(this);
+        List<Statement> statements = new ArrayList<>();
+        statements.add(statement);
+
+        return new Statement("while", parExpression, statements);
+    }
+
+    @Override
+    public Statement visitStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx) {
+        Expression expression = ctx.expression().accept(expressionVisitor);
+        return new Statement("assign", expression);
+    }
 }

@@ -38,6 +38,14 @@ public class Statement implements Printer {
             sb.append("if (" + expression.print() + ")");
         }
 
+        if (type.equals("while")) {
+            sb.append("while (" + expression.print() + ")");
+        }
+
+        if (type.equals("assign")) {
+            sb.append(expression.print() + ";");
+        }
+
         for (int i=0; i<statements.size(); i++) {
             if (i == 0) {
                 sb.append(" {\n\t\t" + statements.get(0).print() + "\n\t}");
