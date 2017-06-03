@@ -202,7 +202,31 @@ public class JavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements J
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitMethodName(@NotNull JavaParser.MethodNameContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWhileStatement(@NotNull JavaParser.WhileStatementContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -259,4 +283,12 @@ public class JavaBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements J
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitCondStatement(@NotNull JavaParser.CondStatementContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx) { return visitChildren(ctx); }
 }

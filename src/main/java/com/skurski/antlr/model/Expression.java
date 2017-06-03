@@ -55,6 +55,11 @@ public class Expression implements Printer {
         if (leftValue != null && rightValue != null) {
             return leftValue.value + " " + operation + " " + rightValue.value;
         }
+
+        if (leftValue != null && rightValue == null) {
+            return leftValue.value + " " + operation;
+        }
+
         return value;
     }
 

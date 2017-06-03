@@ -41,4 +41,16 @@ public class Demo {
             return 0.0;
         }
     }
+
+    private double increment() {
+        double x = 10;
+        while (value == 10) {
+            if (x > 10) {
+                x--;
+            } else {
+                x++;
+            }
+        }
+        return x;
+    }
 }

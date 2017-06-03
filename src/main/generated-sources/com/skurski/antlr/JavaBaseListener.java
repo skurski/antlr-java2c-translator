@@ -316,6 +316,19 @@ public class JavaBaseListener implements JavaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStatementExpression(@NotNull JavaParser.StatementExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMethodName(@NotNull JavaParser.MethodNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -323,6 +336,32 @@ public class JavaBaseListener implements JavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMethodName(@NotNull JavaParser.MethodNameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhileStatement(@NotNull JavaParser.WhileStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhileStatement(@NotNull JavaParser.WhileStatementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -414,6 +453,19 @@ public class JavaBaseListener implements JavaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCondStatement(@NotNull JavaParser.CondStatementContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

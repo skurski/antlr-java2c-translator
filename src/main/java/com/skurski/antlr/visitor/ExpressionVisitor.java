@@ -33,4 +33,19 @@ public class ExpressionVisitor extends JavaBaseVisitor<Expression> {
         expression.setRightValue(new Expression(ctx.expression().get(1).getText()));
         return expression;
     }
+
+    @Override
+    public Expression visitNotEqualExpression(@NotNull JavaParser.NotEqualExpressionContext ctx) {
+        Expression expression = new Expression();
+        expression.setLeftValue(new Expression(ctx.expression().get(0).getText()));
+        expression.setOperation(ctx.op.getText());
+        expression.setRightValue(new Expression(ctx.expression().get(1).getText()));
+        return expression;
+    }
+
+    @Override
+    public Expression visitIncDecExpression(@NotNull JavaParser.IncDecExpressionContext ctx) {
+        Expression expression = new Expression(ctx.getText());
+        return expression;
+    }
 }

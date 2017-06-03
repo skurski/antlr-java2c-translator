@@ -90,12 +90,16 @@ type
 statement
     :   'return' expression? ';'                                            #returnStatement
     |   'if' parExpression '{' statement '}' ('else {' statement '}')?      #condStatement
+    |   'while' parExpression '{' statement '}'                             #whileStatement
+    |   expression ';'                                                      #statementExpression
     ;
 
 expression
-    :   literal                                         #literalExpression
-    |   expression op=('+'|'-'|'*'|'/') expression      #calcExpression
-    |   expression op=('=='|'!=') expression            #equalityExpression
+    :   literal                                                             #literalExpression
+    |   expression op=('+'|'-'|'*'|'/') expression                          #calcExpression
+    |   expression op=('=='|'!=') expression                                #equalityExpression
+    |   expression op=('<='|'>='|'>'|'<') expression                        #notEqualExpression
+    |   expression op=('++'|'--')                                           #incDecExpression
     ;
 
 parExpression
